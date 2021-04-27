@@ -534,11 +534,11 @@ contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyG
      * @param maxAmountsIn - Max amount of asset tokens to spend
      */
     function joinPool(uint poolAmountOut, uint[] calldata maxAmountsIn)
-    external
-    logs
-    lock
-    needsBPool
-    lockUnderlyingPool
+        external
+        logs
+        lock
+        needsBPool
+        lockUnderlyingPool
     {
         require(!rights.canWhitelistLPs || _liquidityProviderWhitelist[msg.sender],
             "ERR_NOT_ON_WHITELIST");
@@ -580,11 +580,11 @@ contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyG
      * @param minAmountsOut - minimum amount of asset tokens to receive
      */
     function exitPool(uint poolAmountIn, uint[] calldata minAmountsOut)
-    external
-    logs
-    lock
-    needsBPool
-    lockUnderlyingPool
+        external
+        logs
+        lock
+        needsBPool
+        lockUnderlyingPool
     {
         // Delegate to library to save space
 
@@ -630,11 +630,11 @@ contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyG
         uint tokenAmountIn,
         uint minPoolAmountOut
     )
-    external
-    logs
-    lock
-    needsBPool
-    returns (uint poolAmountOut)
+        external
+        logs
+        lock
+        needsBPool
+        returns (uint poolAmountOut)
     {
         require(!rights.canWhitelistLPs || _liquidityProviderWhitelist[msg.sender],
             "ERR_NOT_ON_WHITELIST");
@@ -671,11 +671,11 @@ contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyG
         uint poolAmountOut,
         uint maxAmountIn
     )
-    external
-    logs
-    lock
-    needsBPool
-    returns (uint tokenAmountIn)
+        external
+        logs
+        lock
+        needsBPool
+        returns (uint tokenAmountIn)
     {
         require(!rights.canWhitelistLPs || _liquidityProviderWhitelist[msg.sender],
             "ERR_NOT_ON_WHITELIST");
@@ -712,11 +712,11 @@ contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyG
         uint poolAmountIn,
         uint minAmountOut
     )
-    external
-    logs
-    lock
-    needsBPool
-    returns (uint tokenAmountOut)
+        external
+        logs
+        lock
+        needsBPool
+        returns (uint tokenAmountOut)
     {
         // Delegate to library to save space
 
@@ -757,11 +757,11 @@ contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyG
         uint tokenAmountOut,
         uint maxPoolAmountIn
     )
-    external
-    logs
-    lock
-    needsBPool
-    returns (uint poolAmountIn)
+        external
+        logs
+        lock
+        needsBPool
+        returns (uint poolAmountIn)
     {
         // Delegate to library to save space
 
@@ -793,10 +793,10 @@ contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyG
      * @param provider - address of the liquidity provider
      */
     function whitelistLiquidityProvider(address provider)
-    external
-    onlyOwner
-    lock
-    logs
+        external
+        onlyOwner
+        lock
+        logs
     {
         require(rights.canWhitelistLPs, "ERR_CANNOT_WHITELIST_LPS");
         require(provider != address(0), "ERR_INVALID_ADDRESS");
@@ -809,10 +809,10 @@ contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyG
      * @param provider - address of the liquidity provider
      */
     function removeWhitelistedLiquidityProvider(address provider)
-    external
-    onlyOwner
-    lock
-    logs
+        external
+        onlyOwner
+        lock
+        logs
     {
         require(rights.canWhitelistLPs, "ERR_CANNOT_WHITELIST_LPS");
         require(_liquidityProviderWhitelist[provider], "ERR_LP_NOT_WHITELISTED");
@@ -827,9 +827,9 @@ contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyG
      * @return boolean value indicating whether the address can join a pool
      */
     function canProvideLiquidity(address provider)
-    external
-    view
-    returns (bool)
+        external
+        view
+        returns (bool)
     {
         if (rights.canWhitelistLPs) {
             return _liquidityProviderWhitelist[provider];
