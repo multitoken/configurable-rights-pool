@@ -2,6 +2,8 @@
 pragma solidity 0.6.12;
 
 interface IBPool {
+    function isConstructed() external view returns (bool);
+    function setUnderConstruct(bool value) external;
     function rebind(address token, uint balance, uint denorm) external;
     function setSwapFee(uint swapFee) external;
     function setPublicSwap(bool publicSwap) external;
