@@ -217,6 +217,29 @@ contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyG
 
     // External functions
 
+    function isFinalized()
+        external
+        view
+        returns (bool)
+    {
+        return address(bPool) != address(0) && bPool.isFinalized();
+    }
+
+    function finalize()
+        external
+        logs
+        lock
+        onlyOwner
+        needsBPool
+        virtual
+    {
+        bPool.finalize();
+        rights.canChangeWeights= false;
+        rights.canAddRemoveTokens = false;
+        rights.canWhitelistLPs = false;
+        rights.canChangeCap = false;
+    }
+
     /**
      * @notice Set the swap fee on the underlying pool
      * @dev Keep the local version and core in sync (see below)
