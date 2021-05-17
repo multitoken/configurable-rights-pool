@@ -239,7 +239,6 @@ library SmartPoolManager {
         require(!bPool.isBound(token), "ERR_IS_BOUND");
 
         require(denormalizedWeight <= BalancerConstants.MAX_WEIGHT, "ERR_WEIGHT_ABOVE_MAX");
-        require(denormalizedWeight >= BalancerConstants.MIN_WEIGHT, "ERR_WEIGHT_BELOW_MIN");
         require(BalancerSafeMath.badd(bPool.getTotalDenormalizedWeight(),
                                       denormalizedWeight) <= BalancerConstants.MAX_TOTAL_WEIGHT,
                 "ERR_MAX_TOTAL_WEIGHT");
