@@ -230,10 +230,8 @@ contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyG
         logs
         lock
         onlyOwner
-        needsBPool
         virtual
     {
-        bPool.finalize();
         rights.canChangeWeights= false;
         rights.canAddRemoveTokens = false;
         rights.canWhitelistLPs = false;
