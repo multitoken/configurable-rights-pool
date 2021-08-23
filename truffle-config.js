@@ -1,3 +1,5 @@
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+
 module.exports = {
     networks: {
         development: {
@@ -13,6 +15,26 @@ module.exports = {
             gas: 0xfffffffffff,
             gasPrice: 0x01,
         },
+        matic: {
+            provider: () => new HDWalletProvider([process.env.DEPOYER_PRIVATE_KEY], 'https://matic-mainnet.chainstacklabs.com'),
+            network_id: 137,
+            confirmations: 0,
+            timeoutBlocks: 200,
+            skipDryRun: true,
+            disableConfirmationListener: true,
+            deploymentPollingInterval: 16000,
+            // gas: 1000000,
+            gasPrice: 10000000000, // 5 Gwei
+        },
+        bsc: {
+            provider: () => new HDWalletProvider([process.env.DEPOYER_PRIVATE_KEY], 'https://bsc-dataseed.binance.org'),
+            network_id: 56,
+            confirmations: 1,
+            timeoutBlocks: 200,
+            skipDryRun: true,
+            gasPrice: 5000000000, // 5 Gwei
+            // gas: 6722000,
+        },
     },
     // Configure your compilers
     compilers: {
@@ -21,7 +43,7 @@ module.exports = {
             settings: { // See the solidity docs for advice about optimization and evmVersion
                 optimizer: {
                     enabled: true,
-                    runs: 200,
+                    runs: 100,
                 },
                 evmVersion: 'istanbul',
             },
